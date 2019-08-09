@@ -14,15 +14,17 @@ printf " >> Checking for root git repository.. "
 if [ ! -d $SRC ]
 then
     printf "not found, installing..\n"
-    git clone http://github.com/root-project/root.git src && \
-    cd $SRC && \
-    echo "Checking out $VERSION branch.." && \
-    git checkout -b $VERSION $VERSION && \
-    cd $ROOT || \
+    git clone http://github.com/root-project/root.git src || \
     exit 1
 else
     printf "found\n"
 fi
+
+cd $SRC && \
+echo "Checking out $VERSION branch.." && \
+git checkout -b $VERSION $VERSION && \
+cd $ROOT || \
+exit 1
 
 echo
 echo " >> Making build and install directories.."
