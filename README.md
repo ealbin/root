@@ -9,3 +9,5 @@
 
 3) Profit.
 
+
+(check https://root.cern.ch/build-prerequisites for prerequisites)
