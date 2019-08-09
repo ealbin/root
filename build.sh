@@ -20,11 +20,17 @@ else
     printf "found\n"
 fi
 
-cd $SRC && \
-echo "Checking out $VERSION branch.." && \
-git checkout -b $VERSION $VERSION && \
-cd $ROOT || \
-exit 1
+cd $SRC
+if [ "$(git branch | grep \* | cut -d ' ' -f2)" == "$VERSION" ]
+then
+    printf " >> %s branch checked out, continuing.. \n" $VERSION
+else 
+    printf " >> Checking out $VERSION branch.." && \
+    git checkout -b $VERSION $VERSION && \
+    cd $ROOT || \
+    exit 1
+fi
+cd $ROOT
 
 echo
 echo " >> Making build and install directories.."
