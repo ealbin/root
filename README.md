@@ -3,6 +3,10 @@
 
     VERSION="vX-XX-XX" (see https://root.cern.ch/releases)
 
+1a) Optional, edit line 8 in ./build.sh:
+
+    PYTHON="/path/to/python/version" (PyROOT will be built using this python)
+
 2) Run it:
 
     $ ./build.sh

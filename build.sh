@@ -1,14 +1,19 @@
 #!/usr/bin/env bash
 
-# Set this:
+# >>> Set this (for ROOT version):
 VERSION="v5-34-38"
-#---------------------------------------------
 # root versions: https://root.cern.ch/releases
+
+# >>> And this (for PyROOT v2 or v3):
+PYTHON="/usr/bin/python3"
+
+#---------------------------------------------
 
 ROOT=$(pwd)
 SRC=$(pwd)/src
 BUILD=$(pwd)/build
 INSTALL=$(pwd)/$VERSION
+PY_VERSION=$($PYTHON --version 2>&1 | awk '{print $2}' | awk -F '.' '{print $1"."$2}')
 
 printf " >> Checking for root git repository.. "
 if [ ! -d $SRC ]
@@ -44,7 +49,7 @@ cd $BUILD && \
 rm -rf *
 
 printf "\n\n >> Configuring and setting options..\n\n"
-cmake -DCMAKE_INSTALL_PREFIX=$INSTALL -D all:BOOL=ON $SRC && \
+cmake -DCMAKE_INSTALL_PREFIX=$INSTALL -DPYTHON_EXECUTABLE=$PYTHON -D all:BOOL=ON $SRC && \
 printf "\n\n >> Building root using %d cores\n\n" $(grep -c ^processor /proc/cpuinfo) && \
 cmake --build .  --target install -- -j$(grep -c ^processor /proc/cpuinfo) && \
 printf "\n\n >> Installing root.. \n\n" && \
@@ -54,5 +59,6 @@ cd $ROOT && \
 rm -rf $BUILD && \
 printf "\n\n >> Adding alias to .bashrc: %s='source %s/bin/thisroot.sh\n\n" $VERSION $INSTALL && \
 printf "\n# To activate ROOT version: %s\nalias %s='source %s/bin/thisroot.sh'\n" $VERSION $VERSION $INSTALL >> ~/.bashrc && \
+printf "\n# note: PyROOT has been built for python %s\n" ${PY_VERSION} && \
 printf "Finished successfully!\n\n"
 
