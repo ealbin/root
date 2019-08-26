@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 # >>> Set this (for ROOT version):
-VERSION="v5-34-38"
+VERSION="v6-14-06"
 # root versions: https://root.cern.ch/releases
-# last v6 release (as of this writing): v6-18-00 (2019-06-25)
+# last v6 release (as of this writing): v6-14-06 (2018-11-05)
 # last v5 release: v5-34-38 (2018-03-12)
 # last v4 release: v4-04-02 (2005-05-14)
 # last v3 release: v3-10-02 (2004-01-23)
@@ -30,8 +30,9 @@ else
 fi
 
 cd $SRC
-if [ "$(git branch | grep \* | cut -d ' ' -f2)" == "$VERSION" ]
+if [ "$(git branch | egrep $VERSION)" ]
 then
+    git checkout $VERSION
     printf " >> %s branch checked out, continuing.. \n" $VERSION
 else 
     printf " >> Checking out $VERSION branch.." && \
