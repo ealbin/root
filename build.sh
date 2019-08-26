@@ -3,9 +3,13 @@
 # >>> Set this (for ROOT version):
 VERSION="v5-34-38"
 # root versions: https://root.cern.ch/releases
+# last v6 release (as of this writing): v6-18-00 (2019-06-25)
+# last v5 release: v5-34-38 (2018-03-12)
+# last v4 release: v4-04-02 (2005-05-14)
+# last v3 release: v3-10-02 (2004-01-23)
 
 # >>> And this (for PyROOT v2 or v3):
-PYTHON="/usr/bin/python3"
+PYTHON=$(which python)  # "or /path/to/python"
 
 #---------------------------------------------
 
