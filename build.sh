@@ -36,7 +36,7 @@ then
     printf " >> %s branch checked out, continuing.. \n" $VERSION
 else 
     printf " >> Checking out $VERSION branch.." && \
-    git checkout -b $VERSION $VERSION && \
+    git checkout -b $VERSION && \
     cd $ROOT || \
     exit 1
 fi

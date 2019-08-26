@@ -1,4 +1,8 @@
 
+!!! Important note: if you're using Anaconda, the gcc etc compilers will 
+probably die trying to compile root.  
+Please start your shell without sourcing Anaconda.
+
 1) Edit line 4 in ./build.sh: 
 
     VERSION="vX-XX-XX" (see https://root.cern.ch/releases)
