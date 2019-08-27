@@ -9,7 +9,7 @@ VERSION="v6-14-06"
 # last v3 release: v3-10-02 (2004-01-23)
 
 # >>> And this (for PyROOT v2 or v3):
-PYTHON=$(which python)  # "or /path/to/python"
+PYTHON=$(which python3)  # "or /path/to/python"
 
 #---------------------------------------------
 
@@ -36,7 +36,7 @@ then
     printf " >> %s branch checked out, continuing.. \n" $VERSION
 else 
     printf " >> Checking out $VERSION branch.." && \
-    git checkout -b $VERSION && \
+    git checkout -b $VERSION $VERSION && \
     cd $ROOT || \
     exit 1
 fi
